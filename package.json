@@ -1,0 +1,20 @@
+{
+  "name": "senz-connect",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:server": "npm --workspace apps/server run dev",
+    "dev:admin": "npm --workspace apps/admin-web run dev",
+    "dev:mobile": "npm --workspace apps/mobile run dev",
+    "dev": "concurrently -n server,admin,mobile -c blue,green,magenta \"npm run dev:server\" \"npm run dev:admin\" \"npm run dev:mobile\"",
+    "build": "npm --workspace apps/server run build && npm --workspace apps/admin-web run build",
+    "lint": "npm --workspace apps/server run lint && npm --workspace apps/admin-web run lint",
+    "seed": "npm --workspace apps/server run seed"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
